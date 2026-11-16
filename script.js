@@ -1,8 +1,13 @@
 const menuButton=document.querySelector(".menu-toggle");const nav=document.querySelector(".nav");
 menuButton?.addEventListener("click",()=>{const open=nav.classList.toggle("open");menuButton.setAttribute("aria-expanded",String(open));});
 nav?.querySelectorAll("a").forEach(link=>link.addEventListener("click",()=>{nav.classList.remove("open");menuButton.setAttribute("aria-expanded","false");}));
-const revealEls=document.querySelectorAll(".reveal-left,.reveal-right,.manifesto-grid,.section-heading,.service-list article,.contact-copy,.quote-form");
-revealEls.forEach(el=>{if(!el.classList.contains("reveal-left")&&!el.classList.contains("reveal-right"))el.classList.add("js-reveal");});
-if("IntersectionObserver" in window){const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add("in-view");observer.unobserve(entry.target);}}),{threshold:.12,rootMargin:"0px 0px -35px 0px"});revealEls.forEach(el=>observer.observe(el));}else{revealEls.forEach(el=>el.classList.add("in-view"));}
+const motionTargets=document.querySelectorAll(".reveal-left,.reveal-right,.manifesto-grid,.section-heading,.service-list article,.contact-copy,.quote-form");
+if("IntersectionObserver" in window){
+ const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add("in-view");observer.unobserve(entry.target);}}),{threshold:.12,rootMargin:"0px 0px -45px 0px"});
+ motionTargets.forEach(el=>{if(!el.classList.contains("reveal-left")&&!el.classList.contains("reveal-right"))el.classList.add("js-reveal");observer.observe(el);});
+}else{motionTargets.forEach(el=>el.classList.add("in-view"));}
+const progress=document.createElement("div");progress.className="scroll-progress";progress.setAttribute("aria-hidden","true");document.body.appendChild(progress);
+let scrollTick=false;const updateProgress=()=>{const max=document.documentElement.scrollHeight-innerHeight;progress.style.width=(max>0?(scrollY/max)*100:0)+"%";scrollTick=false;};addEventListener("scroll",()=>{if(!scrollTick){requestAnimationFrame(updateProgress);scrollTick=true;}},{passive:true});updateProgress();
+if(matchMedia("(pointer:fine) and (prefers-reduced-motion: no-preference)").matches){const art=document.querySelector(".hero-art");document.querySelector(".hero")?.addEventListener("pointermove",e=>{if(!art)return;const r=e.currentTarget.getBoundingClientRect();const x=(e.clientX-r.left)/r.width-.5;const y=(e.clientY-r.top)/r.height-.5;art.style.transform="translate3d("+x*10+"px,"+y*9+"px,0)";});}
 document.querySelector("#quote-form")?.addEventListener("submit",event=>{event.preventDefault();const data=new FormData(event.currentTarget);const name=String(data.get("nome")||"").trim();const project=data.get("projeto");const message=String(data.get("mensagem")||"").trim();const body="Olá, ARTSIGN! Meu nome é "+name+". Tenho interesse em: "+project+"."+(message?"\n\nMinha ideia: "+message:"");window.location.href="https://wa.me/5516981047886?text="+encodeURIComponent(body);});
 const year=document.querySelector("#year");if(year)year.textContent=new Date().getFullYear();
