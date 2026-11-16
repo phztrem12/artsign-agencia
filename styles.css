@@ -73,3 +73,13 @@ body:before{content:"";position:fixed;inset:-20%;z-index:5;pointer-events:none;o
 .case-row .case-copy,.flyer-row .flyer-copy{will-change:transform,opacity}
 .case-row.in-view .case-visual,.flyer-row.in-view .flyer-image{filter:drop-shadow(0 28px 32px #0009)}
 @media(max-width:650px){.case-row .case-visual,.flyer-row .flyer-image{will-change:auto}}
+
+
+/* FIX: keep complete project rows visible while GSAP animates their inner layers */
+.motion-ready.reveal-left,.motion-ready.reveal-right{opacity:1!important;transform:none!important}
+.motion-ready .case-copy>*,.motion-ready .flyer-copy>*{opacity:1!important;transform:none!important}
+.motion-ready .case-visual,.motion-ready .flyer-image{clip-path:none!important}
+@media(max-width:650px){
+ .motion-ready.reveal-left,.motion-ready.reveal-right{opacity:1!important;transform:none!important}
+ .motion-ready .case-copy>*,.motion-ready .flyer-copy>*{opacity:1!important;transform:none!important}
+}
