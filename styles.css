@@ -66,3 +66,10 @@ body:before{content:"";position:fixed;inset:-20%;z-index:5;pointer-events:none;o
 @keyframes orbitRotate{to{rotate:360deg}}
 @media(max-width:650px){body:before{opacity:.09;filter:blur(35px)}.section:not(.manifesto):before{left:7%;right:7%}.case-row .case-copy>*,.flyer-row .flyer-copy>*{opacity:1;transform:none}.reveal-left .case-visual,.reveal-right .case-visual,.reveal-left .flyer-image,.reveal-right .flyer-image{clip-path:none}}
 @media(prefers-reduced-motion:reduce){body:before{animation:none}.scroll-progress{display:none}.case-row .case-copy>*,.flyer-row .flyer-copy>*{opacity:1;transform:none}.hero-copy .eyebrow,.hero-kicker,.hero h1,.hero-description,.hero-actions,.hero-image-wrap{animation:none}}
+
+/* Strong, visible scroll transitions */
+.case-row,.flyer-row{perspective:1200px}
+.case-row .case-visual,.flyer-row .flyer-image{clip-path:none!important;will-change:transform,opacity,filter}
+.case-row .case-copy,.flyer-row .flyer-copy{will-change:transform,opacity}
+.case-row.in-view .case-visual,.flyer-row.in-view .flyer-image{filter:drop-shadow(0 28px 32px #0009)}
+@media(max-width:650px){.case-row .case-visual,.flyer-row .flyer-image{will-change:auto}}
