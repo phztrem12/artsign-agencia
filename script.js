@@ -34,5 +34,5 @@ if(window.gsap&&window.ScrollTrigger){
  const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in-view");observer.unobserve(e.target);}}),{threshold:.12});
  document.querySelectorAll(".case-row,.flyer-row,.manifesto-grid,.section-heading,.service-list article,.contact-copy,.quote-form").forEach(el=>observer.observe(el));
 }
-if(matchMedia("(pointer:fine)").matches){const art=document.querySelector(".hero-art");document.querySelector(".hero")?.addEventListener("pointermove",e=>{if(!art)return;const r=e.currentTarget.getBoundingClientRect();const x=(e.clientX-r.left)/r.width-.5;const y=(e.clientY-r.top)/r.height-.5;gsap?.to?gsap.to(art,{x:x*13,y:y*11,duration:.7,ease:"power2.out"}):art.style.transform="translate3d("+x*9+"px,"+y*8+"px,0)";});}
+if(matchMedia("(pointer:fine)").matches){const art=document.querySelector(".hero-art");document.querySelector(".hero")?.addEventListener("pointermove",e=>{if(!art)return;const r=e.currentTarget.getBoundingClientRect();const x=(e.clientX-r.left)/r.width-.5;const y=(e.clientY-r.top)/r.height-.5;window.gsap?.to?window.gsap.to(art,{x:x*13,y:y*11,duration:.7,ease:"power2.out"}):art.style.transform="translate3d("+x*9+"px,"+y*8+"px,0)";});}
 })();
