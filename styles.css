@@ -77,9 +77,7 @@ body:before{content:"";position:fixed;inset:-20%;z-index:5;pointer-events:none;o
 
 /* FIX: keep complete project rows visible while GSAP animates their inner layers */
 .motion-ready.reveal-left,.motion-ready.reveal-right{opacity:1!important;transform:none!important}
-.motion-ready .case-copy>*,.motion-ready .flyer-copy>*{opacity:1!important;transform:none!important}
 .motion-ready .case-visual,.motion-ready .flyer-image{clip-path:none!important}
 @media(max-width:650px){
  .motion-ready.reveal-left,.motion-ready.reveal-right{opacity:1!important;transform:none!important}
- .motion-ready .case-copy>*,.motion-ready .flyer-copy>*{opacity:1!important;transform:none!important}
-}
+ }
