@@ -17,6 +17,7 @@ if(window.gsap&&window.ScrollTrigger){
  gsap.to(".hero-image-wrap img",{scale:1.18,yPercent:-5,ease:"none",scrollTrigger:{trigger:".hero",start:"top top",end:"bottom top",scrub:1}});
  gsap.to(".hero-orbit",{rotation:360,ease:"none",scrollTrigger:{trigger:".hero",start:"top top",end:"bottom top",scrub:2}});
  gsap.utils.toArray(".case-row,.flyer-row").forEach((row,i)=>{
+  row.classList.add("motion-ready","in-view");
   const visual=row.querySelector(".case-visual,.flyer-image");
   const copy=row.querySelector(".case-copy,.flyer-copy");
   const reverse=row.classList.contains("reverse")||row.classList.contains("reveal-right");
@@ -26,10 +27,12 @@ if(window.gsap&&window.ScrollTrigger){
   gsap.fromTo(visual.querySelector("img"),{scale:1.18},{scale:1,ease:"none",scrollTrigger:{trigger:row,start:"top bottom",end:"center center",scrub:1}});
  });
  gsap.utils.toArray(".manifesto-grid,.section-heading,.service-list article,.contact-copy,.quote-form,.flyer-banner").forEach((el,i)=>{
+  el.classList.add("motion-ready");
   gsap.fromTo(el,{y:55,opacity:0},{y:0,opacity:1,duration:.9,ease:"power3.out",scrollTrigger:{trigger:el,start:"top 90%",toggleActions:"play none none reverse"}});
  });
  gsap.utils.toArray(".section-label").forEach(el=>gsap.fromTo(el,{x:-35,opacity:0},{x:0,opacity:1,duration:.7,scrollTrigger:{trigger:el,start:"top 92%",toggleActions:"play none none reverse"}}));
  ScrollTrigger.refresh();
+ window.addEventListener("load",()=>ScrollTrigger.refresh(),{once:true});
 }else{
  const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in-view");observer.unobserve(e.target);}}),{threshold:.12});
  document.querySelectorAll(".case-row,.flyer-row,.manifesto-grid,.section-heading,.service-list article,.contact-copy,.quote-form").forEach(el=>observer.observe(el));
