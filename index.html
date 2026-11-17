@@ -1,44 +1,273 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#080808"><meta name="description" content="ARTSIGN Agência — experiências digitais, sites, sistemas e design que fazem marcas se destacarem.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#080808">
+<meta name="description" content="ARTSIGN Agência — experiências digitais, sites, sistemas e design que fazem marcas se destacarem.">
 <title>ARTSIGN Agência — Ideias que ganham presença</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=cinematic-6">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#080808;--o:#ff5a00;--o2:#ff8a3d;--w:#fff;--mut:#a8a8a8}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--w);font-family:'Space Grotesk',system-ui,sans-serif;overflow-x:hidden;line-height:1.55}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{font-family:'Syne','Space Grotesk',sans-serif;line-height:1;letter-spacing:-.02em}
+em{font-style:normal;color:var(--o)}
+#gl{position:fixed;inset:0;z-index:0;pointer-events:none}
+main,header,footer{position:relative;z-index:1}
+.glow{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(60% 50% at 70% 20%,rgba(255,90,0,.22),transparent 70%),radial-gradient(40% 40% at 10% 90%,rgba(255,90,0,.12),transparent 70%)}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:18px clamp(18px,4vw,56px);backdrop-filter:blur(14px);background:linear-gradient(#080808cc,transparent)}
+.logo{font-family:Syne;font-weight:800;font-size:22px}.logo b{color:var(--o)}
+nav ul{display:flex;gap:clamp(12px,2.5vw,34px);list-style:none;align-items:center;font-size:14px}
+nav a:not(.pill){position:relative}nav a:not(.pill)::after{content:"";position:absolute;left:0;bottom:-4px;height:1px;width:0;background:var(--o);transition:width .4s}nav a:not(.pill):hover::after{width:100%}
+.pill{border:1px solid var(--o);padding:9px 16px;border-radius:99px;transition:.3s}.pill:hover{background:var(--o);box-shadow:0 0 30px var(--o)}
+@media(max-width:700px){nav ul li:not(:last-child){display:none}}
+section{padding:clamp(90px,14vw,180px) clamp(18px,5vw,72px);position:relative}
+.eyebrow{font-size:12px;letter-spacing:.25em;color:var(--o);margin-bottom:22px;text-transform:uppercase}
+.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding-top:120px}
+.hero h1{font-size:clamp(42px,9vw,138px);max-width:12ch}
+.hero p.lead{max-width:540px;color:var(--mut);margin:28px 0 36px;font-size:clamp(16px,1.6vw,19px)}
+.ctas{display:flex;gap:14px;flex-wrap:wrap}
+.btn{--x:50%;--y:50%;position:relative;display:inline-block;padding:16px 28px;border-radius:99px;border:1px solid #ffffff44;overflow:hidden;transition:.3s;font-weight:500}
+.btn::before{content:"";position:absolute;inset:0;background:radial-gradient(120px circle at var(--x) var(--y),rgba(255,90,0,.9),transparent 70%);opacity:0;transition:.3s}
+.btn:hover::before{opacity:1}.btn span{position:relative}
+.btn.main{background:var(--o);border-color:var(--o);box-shadow:0 0 40px rgba(255,90,0,.45)}
+.ml{overflow:hidden;display:block}.ml>span{display:block;will-change:transform}
+.heroimg{position:absolute;right:5vw;bottom:9vh;width:min(36vw,460px);aspect-ratio:4/3;border-radius:18px;overflow:hidden;box-shadow:0 30px 120px rgba(255,90,0,.3);border:1px solid #ffffff22}
+.heroimg img{width:100%;height:100%;object-fit:cover}
+.tag{position:absolute;left:5vw;bottom:5vh;font-size:12px;letter-spacing:.2em;color:var(--mut)}
+@media(max-width:800px){.heroimg{position:relative;right:auto;bottom:auto;width:100%;margin-top:40px}.tag{display:none}}
+h2{font-size:clamp(34px,6vw,88px);max-width:14ch}
+.vision p{max-width:620px;color:var(--mut);margin-top:22px;font-size:clamp(16px,1.7vw,20px)}
+.vision p.q{color:var(--w)}
+.proj{min-height:100svh;display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(24px,5vw,80px);align-items:center;padding-block:60px;perspective:1400px}
+.proj:nth-of-type(even){grid-template-columns:1fr 1.2fr}.proj:nth-of-type(even) .shot{order:2}
+.shot{border-radius:20px;overflow:hidden;border:1px solid #ffffff22;box-shadow:0 40px 140px rgba(255,90,0,.25);transform-style:preserve-3d;will-change:transform}
+.shot img{width:100%;display:block;transform:scale(1.15);will-change:transform}
+.proj h3{font-size:clamp(34px,5vw,72px);margin:12px 0 18px}.proj p{color:var(--mut)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0}.chips i{font-style:normal;font-size:11px;letter-spacing:.12em;border:1px solid #ffffff33;border-radius:99px;padding:6px 12px}
+.num{color:var(--o);font-size:13px;letter-spacing:.2em}
+.foco b{color:var(--w);display:block;font-size:11px;letter-spacing:.2em;color:var(--o)}
+@media(max-width:800px){.proj,.proj:nth-of-type(even){grid-template-columns:1fr}.proj:nth-of-type(even) .shot{order:0}}
+.fl{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:28px;margin-top:50px}
+.fl article{background:#ffffff08;border:1px solid #ffffff1a;border-radius:20px;padding:16px;transition:.4s}
+.fl article:hover{border-color:var(--o);box-shadow:0 0 60px rgba(255,90,0,.25)}
+.fl img{width:100%;border-radius:12px;display:block;margin-bottom:18px}
+.fl h3{font-size:26px;margin:8px 0}.fl p{color:var(--mut);font-size:15px;margin-bottom:14px}.fl a.l{color:var(--o)}
+.quote{text-align:center;padding-block:120px}.quote h2{margin:20px auto 30px;max-width:18ch;font-size:clamp(30px,5vw,70px)}
+.svc{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;margin-top:50px}
+.svc div{border:1px solid #ffffff1a;border-radius:20px;padding:28px;position:relative;overflow:hidden;transition:.4s;background:#ffffff06}
+.svc div::before{content:"";position:absolute;inset:0;background:radial-gradient(260px circle at var(--mx,50%) var(--my,0%),rgba(255,90,0,.28),transparent 70%);opacity:0;transition:.3s}
+.svc div:hover::before{opacity:1}.svc div:hover{transform:translateY(-6px)}
+.svc span{color:var(--o);font-size:13px}.svc h3{font-size:24px;margin:18px 0 10px;position:relative}.svc p{color:var(--mut);font-size:15px;position:relative}
+form{display:grid;gap:18px;max-width:620px;margin-top:36px}
+label{font-size:11px;letter-spacing:.2em;color:var(--mut);display:grid;gap:8px}
+input,select,textarea{background:#ffffff0a;border:1px solid #ffffff26;border-radius:12px;color:#fff;padding:14px;font:inherit}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--o);box-shadow:0 0 24px rgba(255,90,0,.3)}
+select option{background:#111}
+button.btn{cursor:pointer;color:#fff;font:inherit;justify-self:start}
+small{color:var(--mut)}
+footer{padding:60px clamp(18px,5vw,72px);display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;border-top:1px solid #ffffff14;font-size:13px;color:var(--mut)}
+.wa{position:fixed;right:20px;bottom:20px;z-index:60;width:56px;height:56px;border-radius:50%;background:var(--o);display:grid;place-items:center;font-size:24px;box-shadow:0 0 40px rgba(255,90,0,.6);transition:.3s}.wa:hover{transform:scale(1.12)}
+#cur{position:fixed;left:0;top:0;width:34px;height:34px;margin:-17px;border:1px solid var(--o);border-radius:50%;z-index:100;pointer-events:none;transition:width .25s,height .25s,margin .25s,background .25s;mix-blend-mode:screen}
+#cur.h{width:70px;height:70px;margin:-35px;background:rgba(255,90,0,.2)}
+@media(hover:none),(pointer:coarse){#cur{display:none}}
+@media(hover:hover) and (pointer:fine){body.cc,body.cc a,body.cc button{cursor:none}}
+#bar{position:fixed;top:0;left:0;height:3px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,var(--o),var(--o2));z-index:300;box-shadow:0 0 16px var(--o)}
+.mq{overflow:hidden;white-space:nowrap;padding:34px 0;border-block:1px solid #ffffff14;background:#0a0a0acc}
+.mq div{display:inline-block;font-family:Syne;font-weight:800;font-size:clamp(34px,7vw,96px);color:transparent;-webkit-text-stroke:1px #ffffff55;will-change:transform}
+.mq b{color:var(--o);-webkit-text-stroke:0;margin:0 .35em}
+.wd{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.08em}.wd>i{display:inline-block;font-style:normal;will-change:transform}
+.rip{position:fixed;width:12px;height:12px;margin:-6px;border-radius:50%;border:1px solid var(--o);pointer-events:none;z-index:90}
+.proj .shot::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 40%,rgba(255,138,61,.25) 50%,transparent 60%);transform:translateX(-120%);transition:transform 1s}.shot{position:relative}.shot:hover::after{transform:translateX(120%)}
+#curtain{position:fixed;inset:0;background:var(--bg);z-index:200;display:grid;place-items:center;font-family:Syne;font-size:clamp(30px,6vw,70px);font-weight:800}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
 </head>
 <body>
-<div class="cinematic-loader" aria-hidden="true"><div class="loader-mark">ARTSIGN<span>.</span></div><div class="loader-line"><i></i></div><small>IDEIAS QUE GANHAM PRESENÇA</small></div>
-<canvas id="art-canvas" aria-hidden="true"></canvas>
-<header class="site-header"><a class="wordmark" href="#inicio">ARTSIGN<span>.</span></a><button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false"><i></i><i></i></button><nav class="nav"><a href="#projetos">Projetos</a><a href="#flyers">Flyers</a><a href="#servicos">Serviços</a><a class="nav-contact" href="#contato">Vamos conversar <b>↗</b></a></nav></header>
+<div id="curtain"><span>ARTSIGN<b style="color:var(--o)">.</b></span></div>
+<div id="bar"></div><div class="glow"></div><canvas id="gl" aria-hidden="true"></canvas><div id="cur" aria-hidden="true"></div>
+
+<nav>
+ <a class="logo" href="#inicio">ARTSIGN<b>.</b></a>
+ <ul><li><a href="#projetos">Projetos</a></li><li><a href="#flyers">Flyers</a></li><li><a href="#servicos">Serviços</a></li><li><a class="pill" href="#contato">Vamos conversar ↗</a></li></ul>
+</nav>
+
 <main>
 <section class="hero" id="inicio">
- <div class="hero-copy"><div class="eyebrow"><span></span> ESTÚDIO CRIATIVO • DESIGN • TECNOLOGIA</div><p class="hero-kicker">IDEIAS GRANDES MERECEM UMA PRESENÇA À ALTURA.</p><h1>Seu próximo<br>nível começa<br><em>aqui.</em></h1><p class="hero-description">Criamos experiências digitais que valorizam marcas, aproximam pessoas e transformam negócios. Do primeiro impacto ao último detalhe.</p><div class="hero-actions"><a class="button primary" href="#projetos">Explore nosso trabalho <b>↓</b></a><a class="text-link" href="#contato">Comece um projeto <b>↗</b></a></div></div>
- <div class="hero-art"><div class="hero-image-wrap"><img src="assets/portfolio/fit-pro.webp" alt="Identidade visual e interface do projeto Fit Pro"><div class="image-shade"></div><span class="image-stamp">IDEIAS<br>EM FORMA<br><b>DIGITAL.</b></span></div><div class="hero-orbit"></div><div class="hero-index">ARTSIGN STUDIO <span>BRASIL · 2026</span></div><div class="hero-floating">CRIATIVIDADE<br>QUE MOVE <b>↗</b></div></div>
- <div class="hero-bottom"><span>ARRASTE PARA DESCOBRIR</span><span>01 — 05</span></div>
+ <div class="eyebrow">Estúdio criativo • Design • Tecnologia</div>
+ <h1 aria-label="Seu próximo nível começa aqui."><span class="ml"><span>Seu próximo</span></span><span class="ml"><span>nível começa</span></span><span class="ml"><span><em>aqui.</em></span></span></h1>
+ <p class="lead rv">Criamos experiências digitais que valorizam marcas, aproximam pessoas e transformam negócios. Do primeiro impacto ao último detalhe.</p>
+ <div class="ctas rv"><a class="btn main" href="#projetos"><span>Explore nosso trabalho ↓</span></a><a class="btn" href="#contato"><span>Comece um projeto ↗</span></a></div>
+ <div class="heroimg" id="heroimg"><img src="/assets/portfolio/fit-pro.webp" alt="Identidade visual e interface do projeto Fit Pro"></div>
+ <div class="tag">ARTSIGN STUDIO BRASIL · 2026</div>
 </section>
-<section class="manifesto section" id="sobre"><div class="section-label">01 / NOSSA VISÃO</div><div class="manifesto-grid"><h2>Não é só estar<br>na internet.<br>É <em>marcar presença.</em></h2><div class="manifesto-copy"><span class="big-quote">“</span><p>Uma marca forte merece mais do que um modelo pronto. Merece intenção, personalidade e uma experiência que faça as pessoas lembrarem dela.</p><p>É isso que colocamos em cada projeto: estratégia no pensamento, cuidado no design e tecnologia trabalhando a favor do seu negócio.</p><a href="#servicos" class="text-link">Conheça o que fazemos <b>↘</b></a></div></div></section>
-<section class="work section" id="projetos"><div class="section-heading"><div><div class="section-label">02 / PORTFÓLIO</div><h2>Feito para<br><em>se destacar.</em></h2></div><p>Projetos com objetivos diferentes, unidos por uma mesma ideia: criar experiências digitais que deixam uma boa impressão.</p></div>
-<div class="case-list">
-<article class="case-row reveal-left"><div class="case-visual"><img src="assets/portfolio/nexus-mobile.webp" alt="Tela do projeto Nexus Mobile" loading="lazy"><span class="visual-number">01</span><span class="visual-caption">EXPERIÊNCIA DE COMPRA</span></div><div class="case-copy"><span class="case-type">E-COMMERCE / TECNOLOGIA</span><h3>Nexus<br><em>Mobile.</em></h3><p>Uma vitrine digital pensada para destacar produtos, organizar a navegação e tornar a experiência de compra mais simples e envolvente.</p><div class="case-tags"><span>LOJA VIRTUAL</span><span>DESIGN RESPONSIVO</span></div><div class="case-note"><b>O FOCO</b><span>Apresentação de produtos com clareza e personalidade.</span></div></div></article>
-<article class="case-row reverse reveal-right"><div class="case-visual"><img src="assets/portfolio/fit-pro.webp" alt="Tela do sistema Fit Pro" loading="lazy"><span class="visual-number">02</span><span class="visual-caption">GESTÃO EM MOVIMENTO</span></div><div class="case-copy"><span class="case-type">SISTEMA WEB / FITNESS</span><h3>Fit<br><em>Pro.</em></h3><p>Uma plataforma de gestão para academias que conecta alunos, planos, financeiro e rotina operacional em uma experiência organizada.</p><div class="case-tags"><span>SAAS</span><span>GESTÃO</span><span>TECNOLOGIA</span></div><div class="case-note"><b>O FOCO</b><span>Transformar processos do dia a dia em uma operação mais simples.</span></div></div></article>
-<article class="case-row reveal-left"><div class="case-visual"><img src="assets/portfolio/docuras-da-inde.webp" alt="Loja Doçuras da Inde" loading="lazy"><span class="visual-number">03</span><span class="visual-caption">SABOR EM CADA DETALHE</span></div><div class="case-copy"><span class="case-type">LOJA DIGITAL / ALIMENTAÇÃO</span><h3>Doçuras<br><em>da Inde.</em></h3><p>Uma experiência de pedidos direta e acolhedora, com produtos bem apresentados e navegação simples para quem quer pedir sem complicação.</p><div class="case-tags"><span>DELIVERY</span><span>CATÁLOGO DIGITAL</span></div><div class="case-note"><b>O FOCO</b><span>Facilitar o pedido e valorizar cada produto.</span></div></div></article>
-<article class="case-row reverse reveal-right"><div class="case-visual"><img src="assets/portfolio/4-rodas.webp" alt="Site 4 Rodas Veículos" loading="lazy"><span class="visual-number">04</span><span class="visual-caption">PRESENÇA QUE ACELERA</span></div><div class="case-copy"><span class="case-type">WEBSITE / AUTOMOTIVO</span><h3>4 Rodas<br><em>Veículos.</em></h3><p>Uma apresentação digital de impacto para valorizar o estoque, fortalecer a identidade da loja e aproximar a empresa de novos clientes.</p><div class="case-tags"><span>INSTITUCIONAL</span><span>AUTOMOTIVO</span></div><div class="case-note"><b>O FOCO</b><span>Dar destaque à marca e gerar novas oportunidades.</span></div></div></article>
-</div></section>
-<section class="flyers section" id="flyers"><div class="section-heading flyer-section-heading"><div><div class="section-label">03 / ARTES & FLYERS</div><h2>Uma imagem<br>vale o <em>impacto.</em></h2></div><p>Seu produto merece ser visto. Sua promoção merece atenção. Criamos artes que comunicam com força e deixam sua marca na memória.</p></div>
-<div class="flyer-showcase">
-<article class="flyer-row reveal-left"><div class="flyer-image"><img src="assets/portfolio/flyers/flyer-01.webp" alt="Arte promocional criada pela ARTSIGN" loading="lazy"><span>ARTE 01</span></div><div class="flyer-copy"><span class="flyer-overline">01 / PRIMEIRO IMPACTO</span><h3>Faça parar.<br><em>Faça olhar.</em></h3><p>Em meio a tantas publicações, uma arte bem construída chama atenção antes mesmo da primeira palavra.</p><a class="text-link" href="https://wa.me/5516981047886?text=Ol%C3%A1%2C%20ARTSIGN!%20Quero%20criar%20um%20flyer." target="_blank" rel="noopener">Crie sua próxima arte <b>↗</b></a></div></article>
-<article class="flyer-row reverse reveal-right"><div class="flyer-image"><img src="assets/portfolio/flyers/flyer-02.webp" alt="Flyer de divulgação criado pela ARTSIGN" loading="lazy"><span>ARTE 02</span></div><div class="flyer-copy"><span class="flyer-overline">02 / VALOR DE MARCA</span><h3>Seu negócio<br>com outra <em>presença.</em></h3><p>Design consistente transmite profissionalismo, fortalece sua identidade e valoriza o que você oferece.</p><a class="text-link" href="https://wa.me/5516981047886?text=Ol%C3%A1%2C%20ARTSIGN!%20Quero%20um%20or%C3%A7amento%20de%20arte." target="_blank" rel="noopener">Valorize sua divulgação <b>↗</b></a></div></article>
-<article class="flyer-row reveal-left"><div class="flyer-image"><img src="assets/portfolio/flyers/flyer-03.webp" alt="Design de flyer para redes sociais da ARTSIGN" loading="lazy"><span>ARTE 03</span></div><div class="flyer-copy"><span class="flyer-overline">03 / MENSAGEM QUE CONVERTE</span><h3>Uma boa ideia<br>merece ser <em>vista.</em></h3><p>Campanhas, eventos, lançamentos e ofertas com uma comunicação clara, atraente e pronta para circular.</p><a class="text-link" href="https://wa.me/5516981047886?text=Ol%C3%A1%2C%20ARTSIGN!%20Quero%20divulgar%20minha%20marca." target="_blank" rel="noopener">Vamos divulgar sua ideia <b>↗</b></a></div></article>
-</div><div class="flyer-banner"><span>ARTSIGN CREATIVE STUDIO</span><p>Não publique só por publicar.<br><em>Publique para ser lembrado.</em></p><a class="button primary" href="#contato">Quero uma arte profissional ↗</a></div></section>
-<section class="services section" id="servicos"><div class="section-label">04 / O QUE FAZEMOS</div><h2>Ideia boa.<br><em>Execução melhor.</em></h2><div class="service-list"><article><span>01</span><div><h3>Sites profissionais</h3><p>Presença digital com personalidade, estratégia e adaptação para todos os dispositivos.</p></div><b>↗</b></article><article><span>02</span><div><h3>Lojas virtuais</h3><p>Catálogos, carrinho e jornadas de compra pensadas para facilitar a vida do cliente.</p></div><b>↗</b></article><article><span>03</span><div><h3>Sistemas personalizados</h3><p>Ferramentas sob medida para organizar processos e dar mais controle ao seu negócio.</p></div><b>↗</b></article><article><span>04</span><div><h3>Flyers e design gráfico</h3><p>Artes para campanhas, redes sociais, promoções e comunicação da sua marca.</p></div><b>↗</b></article></div></section>
-<section class="contact section" id="contato"><div class="contact-copy"><div class="section-label">05 / SEU PROJETO COMEÇA AQUI</div><h2>Vamos criar algo<br><em>memorável?</em></h2><p>Conte sua ideia para a gente. Vamos pensar juntos em uma solução que faça sentido para o seu negócio.</p><a class="button primary" href="https://wa.me/5516981047886?text=Ol%C3%A1%2C%20ARTSIGN!%20Quero%20come%C3%A7ar%20um%20projeto." target="_blank" rel="noopener">Falar com a ARTSIGN ↗</a></div><form class="quote-form" id="quote-form"><label>SEU NOME<input name="nome" required placeholder="Como podemos chamar você?"></label><label>TIPO DE PROJETO<select name="projeto" required><option value="">Selecione uma opção</option><option>Site profissional</option><option>Loja virtual</option><option>Sistema personalizado</option><option>Flyer / design gráfico</option><option>Outro projeto</option></select></label><label>SUA IDEIA<textarea name="mensagem" rows="4" placeholder="Conte um pouco sobre o que você precisa..."></textarea></label><button class="button primary" type="submit">Enviar pelo WhatsApp ↗</button><small>Você continuará a conversa diretamente pelo WhatsApp.</small></form></section>
+
+<div class="mq" aria-hidden="true"><div id="mqt">SITES<b>✦</b>LOJAS VIRTUAIS<b>✦</b>SISTEMAS<b>✦</b>FLYERS<b>✦</b>DESIGN<b>✦</b>SITES<b>✦</b>LOJAS VIRTUAIS<b>✦</b>SISTEMAS<b>✦</b>FLYERS<b>✦</b>DESIGN<b>✦</b></div></div>
+<section class="vision" id="visao">
+ <div class="eyebrow">01 / Nossa visão</div>
+ <h2 class="rv">Não é só estar na internet. É <em>marcar presença.</em></h2>
+ <p class="rv q">Uma marca forte merece mais do que um modelo pronto. Merece intenção, personalidade e uma experiência que faça as pessoas lembrarem dela.</p>
+ <p class="rv">É isso que colocamos em cada projeto: estratégia no pensamento, cuidado no design e tecnologia trabalhando a favor do seu negócio.</p>
+ <p class="rv"><a class="pill" href="#servicos" style="display:inline-block;margin-top:10px">Conheça o que fazemos ↘</a></p>
+</section>
+
+<div id="projetos">
+<section style="padding-bottom:0"><div class="eyebrow">02 / Portfólio</div><h2 class="rv">Feito para <em>se destacar.</em></h2><p class="rv" style="max-width:560px;color:var(--mut);margin-top:22px">Projetos com objetivos diferentes, unidos por uma mesma ideia: criar experiências digitais que deixam uma boa impressão.</p></section>
+
+<section class="proj"><div class="shot"><img src="/assets/portfolio/nexus-mobile.webp" alt="Tela do projeto Nexus Mobile" loading="lazy"></div><div class="rv"><span class="num">01 · EXPERIÊNCIA DE COMPRA</span><p style="margin-top:8px;font-size:12px;letter-spacing:.15em">E-COMMERCE / TECNOLOGIA</p><h3>Nexus <em>Mobile.</em></h3><p>Uma vitrine digital pensada para destacar produtos, organizar a navegação e tornar a experiência de compra mais simples e envolvente.</p><div class="chips"><i>LOJA VIRTUAL</i><i>DESIGN RESPONSIVO</i></div><p class="foco"><b>O FOCO</b>Apresentação de produtos com clareza e personalidade.</p></div></section>
+
+<section class="proj"><div class="shot"><img src="/assets/portfolio/fit-pro.webp" alt="Tela do sistema Fit Pro" loading="lazy"></div><div class="rv"><span class="num">02 · GESTÃO EM MOVIMENTO</span><p style="margin-top:8px;font-size:12px;letter-spacing:.15em">SISTEMA WEB / FITNESS</p><h3>Fit <em>Pro.</em></h3><p>Uma plataforma de gestão para academias que conecta alunos, planos, financeiro e rotina operacional em uma experiência organizada.</p><div class="chips"><i>SAAS</i><i>GESTÃO</i><i>TECNOLOGIA</i></div><p class="foco"><b>O FOCO</b>Transformar processos do dia a dia em uma operação mais simples.</p></div></section>
+
+<section class="proj"><div class="shot"><img src="/assets/portfolio/docuras-da-inde.webp" alt="Loja Doçuras da Inde" loading="lazy"></div><div class="rv"><span class="num">03 · SABOR EM CADA DETALHE</span><p style="margin-top:8px;font-size:12px;letter-spacing:.15em">LOJA DIGITAL / ALIMENTAÇÃO</p><h3>Doçuras <em>da Inde.</em></h3><p>Uma experiência de pedidos direta e acolhedora, com produtos bem apresentados e navegação simples para quem quer pedir sem complicação.</p><div class="chips"><i>DELIVERY</i><i>CATÁLOGO DIGITAL</i></div><p class="foco"><b>O FOCO</b>Facilitar o pedido e valorizar cada produto.</p></div></section>
+
+<section class="proj"><div class="shot"><img src="/assets/portfolio/4-rodas.webp" alt="Site 4 Rodas Veículos" loading="lazy"></div><div class="rv"><span class="num">04 · PRESENÇA QUE ACELERA</span><p style="margin-top:8px;font-size:12px;letter-spacing:.15em">WEBSITE / AUTOMOTIVO</p><h3>4 Rodas <em>Veículos.</em></h3><p>Uma apresentação digital de impacto para valorizar o estoque, fortalecer a identidade da loja e aproximar a empresa de novos clientes.</p><div class="chips"><i>INSTITUCIONAL</i><i>AUTOMOTIVO</i></div><p class="foco"><b>O FOCO</b>Dar destaque à marca e gerar novas oportunidades.</p></div></section>
+</div>
+
+<section id="flyers">
+ <div class="eyebrow">03 / Artes &amp; Flyers</div>
+ <h2 class="rv">Uma imagem vale o <em>impacto.</em></h2>
+ <p class="rv" style="max-width:560px;color:var(--mut);margin-top:22px">Seu produto merece ser visto. Sua promoção merece atenção. Criamos artes que comunicam com força e deixam sua marca na memória.</p>
+ <div class="fl">
+  <article class="rv"><img src="/assets/portfolio/flyers/flyer-01.webp" alt="Arte promocional criada pela ARTSIGN" loading="lazy"><span class="num">01 / PRIMEIRO IMPACTO</span><h3>Faça parar. <em>Faça olhar.</em></h3><p>Em meio a tantas publicações, uma arte bem construída chama atenção antes mesmo da primeira palavra.</p><a class="l" href="https://wa.me/5516981047886?text=Ol%C3%A1%2C%20ARTSIGN!%20Quero%20criar%20um%20flyer.">Crie sua próxima arte ↗</a></article>
+  <article class="rv"><img src="/assets/portfolio/flyers/flyer-02.webp" alt="Flyer de divulgação criado pela ARTSIGN" loading="lazy"><span class="num">02 / VALOR DE MARCA</span><h3>Seu negócio com outra <em>presença.</em></h3><p>Design consistente transmite profissionalismo, fortalece sua identidade e valoriza o que você oferece.</p><a class="l" href="https://wa.me/5516981047886?text=Ol%C3%A1%2C%20ARTSIGN!%20Quero%20um%20or%C3%A7amento%20de%20arte.">Valorize sua divulgação ↗</a></article>
+  <article class="rv"><img src="/assets/portfolio/flyers/flyer-03.webp" alt="Design de flyer para redes sociais da ARTSIGN" loading="lazy"><span class="num">03 / MENSAGEM QUE CONVERTE</span><h3>Uma boa ideia merece ser <em>vista.</em></h3><p>Campanhas, eventos, lançamentos e ofertas com uma comunicação clara, atraente e pronta para circular.</p><a class="l" href="https://wa.me/5516981047886?text=Ol%C3%A1%2C%20ARTSIGN!%20Quero%20divulgar%20minha%20marca.">Vamos divulgar sua ideia ↗</a></article>
+ </div>
+</section>
+
+<section class="quote"><div class="eyebrow">ARTSIGN Creative Studio</div><h2 class="rv">Não publique só por publicar. <em>Publique para ser lembrado.</em></h2><a class="btn main" href="#contato"><span>Quero uma arte profissional ↗</span></a></section>
+
+<section id="servicos">
+ <div class="eyebrow">04 / O que fazemos</div>
+ <h2 class="rv">Ideia boa. <em>Execução melhor.</em></h2>
+ <div class="svc">
+  <div class="rv"><span>01</span><h3>Sites profissionais</h3><p>Presença digital com personalidade, estratégia e adaptação para todos os dispositivos.</p></div>
+  <div class="rv"><span>02</span><h3>Lojas virtuais</h3><p>Catálogos, carrinho e jornadas de compra pensadas para facilitar a vida do cliente.</p></div>
+  <div class="rv"><span>03</span><h3>Sistemas personalizados</h3><p>Ferramentas sob medida para organizar processos e dar mais controle ao seu negócio.</p></div>
+  <div class="rv"><span>04</span><h3>Flyers e design gráfico</h3><p>Artes para campanhas, redes sociais, promoções e comunicação da sua marca.</p></div>
+ </div>
+</section>
+
+<section id="contato">
+ <div class="eyebrow">05 / Seu projeto começa aqui</div>
+ <h2 class="rv">Vamos criar algo <em>memorável?</em></h2>
+ <p class="rv" style="max-width:520px;color:var(--mut);margin-top:22px">Conte sua ideia para a gente. Vamos pensar juntos em uma solução que faça sentido para o seu negócio.</p>
+ <p class="rv" style="margin-top:24px"><a class="btn main" href="https://wa.me/5516981047886?text=Ol%C3%A1%2C%20ARTSIGN!%20Quero%20come%C3%A7ar%20um%20projeto."><span>Falar com a ARTSIGN ↗</span></a></p>
+ <form id="f" class="rv">
+  <label>SEU NOME<input id="fn" required></label>
+  <label>TIPO DE PROJETO<select id="ft" required><option value="">Selecione uma opção</option><option>Site profissional</option><option>Loja virtual</option><option>Sistema personalizado</option><option>Flyer / design gráfico</option><option>Outro projeto</option></select></label>
+  <label>SUA IDEIA<textarea id="fi" rows="4" required></textarea></label>
+  <button class="btn main" type="submit"><span>Enviar pelo WhatsApp ↗</span></button>
+  <small>Você continuará a conversa diretamente pelo WhatsApp.</small>
+ </form>
+</section>
 </main>
-<footer class="footer"><a class="wordmark" href="#inicio">ARTSIGN<span>.</span></a><p>IDEIAS QUE GANHAM PRESENÇA.</p><a href="#inicio">VOLTAR AO TOPO ↑</a><small>© <span id="year"></span> ARTSIGN AGÊNCIA. TODOS OS DIREITOS RESERVADOS.</small></footer>
-<a class="whatsapp-float" href="https://wa.me/5516981047886?text=Ol%C3%A1%2C%20ARTSIGN!" target="_blank" rel="noopener" aria-label="WhatsApp">✆</a>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r160/three.min.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js" defer></script>
-<script src="script.js?v=cinematic-6" defer></script>
-</body></html>
+
+<footer><div><a class="logo" href="#inicio">ARTSIGN<b>.</b></a><br>IDEIAS QUE GANHAM PRESENÇA.</div><div><a href="#inicio">VOLTAR AO TOPO ↑</a><br>© ARTSIGN AGÊNCIA. TODOS OS DIREITOS RESERVADOS.</div></footer>
+<a class="wa" href="https://wa.me/5516981047886?text=Ol%C3%A1%2C%20ARTSIGN!" aria-label="WhatsApp">✆</a>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+var RM=matchMedia('(prefers-reduced-motion:reduce)').matches,mobile=innerWidth<800||matchMedia('(pointer:coarse)').matches;
+
+// WhatsApp form (mesmo número do site)
+document.getElementById('f').addEventListener('submit',function(e){e.preventDefault();
+ var t='Olá, ARTSIGN! Meu nome é '+fn.value+'. Tenho interesse em: '+ft.value+'. Minha ideia: '+fi.value;
+ window.open('https://wa.me/5516981047886?text='+encodeURIComponent(t),'_blank','noopener');});
+
+// Interações de luz
+document.querySelectorAll('.btn').forEach(function(b){b.addEventListener('pointermove',function(e){var r=b.getBoundingClientRect();b.style.setProperty('--x',(e.clientX-r.left)+'px');b.style.setProperty('--y',(e.clientY-r.top)+'px')})});
+document.querySelectorAll('.svc div').forEach(function(b){b.addEventListener('pointermove',function(e){var r=b.getBoundingClientRect();b.style.setProperty('--mx',(e.clientX-r.left)+'px');b.style.setProperty('--my',(e.clientY-r.top)+'px')})});
+
+if(typeof gsap==='undefined'){document.getElementById('curtain').remove();return}
+gsap.registerPlugin(ScrollTrigger);
+var cur=document.getElementById('cur');
+
+// Cursor personalizado (apenas desktop)
+if(!mobile&&!RM){document.body.classList.add('cc');var cx=gsap.quickTo(cur,'x',{duration:.25}),cy=gsap.quickTo(cur,'y',{duration:.25});
+ addEventListener('pointermove',function(e){cx(e.clientX);cy(e.clientY)});
+ document.querySelectorAll('a,button,.svc div,.shot').forEach(function(el){el.addEventListener('pointerenter',function(){cur.classList.add('h')});el.addEventListener('pointerleave',function(){cur.classList.remove('h')})});}
+
+// Entrada
+var intro=gsap.timeline();
+intro.to('#curtain',{yPercent:-100,duration:RM?.01:1,delay:RM?0:.6,ease:'power4.inOut'})
+ .from('.hero h1 .ml>span',{yPercent:110,rotate:4,duration:RM?.01:1.2,stagger:.12,ease:'power4.out'},'-=.3')
+ .from('.hero .rv',{y:30,opacity:0,duration:.9,stagger:.12},'-=.6')
+ .from('#heroimg',{scale:.8,opacity:0,y:60,duration:1.2,ease:'power3.out'},'-=.9');
+
+if(!RM){
+ // Revelações variadas (cada elemento entra de um jeito)
+ var FX=[{y:80,opacity:0},{x:-90,opacity:0},{x:90,opacity:0},{scale:.82,opacity:0,y:40},{y:60,opacity:0,filter:'blur(14px)'},{rotateX:-35,y:60,opacity:0,transformPerspective:800}];
+ gsap.utils.toArray('.rv').forEach(function(el,i){if(el.closest('.hero'))return;
+  var f=Object.assign({duration:1.2,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 90%'}},FX[i%FX.length]);gsap.from(el,f)});
+ // Títulos: palavra por palavra com máscara
+ gsap.utils.toArray('h2').forEach(function(h){
+  (function w(n){Array.from(n.childNodes).forEach(function(c){if(c.nodeType===3){var f=document.createDocumentFragment();c.textContent.split(/(\s+)/).forEach(function(t){if(!t.trim()){f.appendChild(document.createTextNode(t));return}var o=document.createElement('span');o.className='wd';o.innerHTML='<i>'+t+'</i>';f.appendChild(o)});c.replaceWith(f)}else if(c.nodeType===1&&!c.classList.contains('wd'))w(c)})})(h);
+  gsap.from(h.querySelectorAll('.wd>i'),{yPercent:115,rotate:5,duration:1.1,stagger:.07,ease:'power4.out',scrollTrigger:{trigger:h,start:'top 88%'}})});
+ // Cartões de serviço e flyers em cascata, flyers com cortina de imagem
+ gsap.from('.svc div',{y:100,opacity:0,rotateX:-25,transformPerspective:900,stagger:.15,duration:1.1,ease:'power3.out',scrollTrigger:{trigger:'.svc',start:'top 82%'}});
+ gsap.utils.toArray('.fl img').forEach(function(im,i){gsap.fromTo(im,{clipPath:i%2?'inset(0 0 0 100%)':'inset(0 100% 0 0)',scale:1.3},{clipPath:'inset(0 0% 0 0%)',scale:1,duration:1.5,ease:'power4.inOut',scrollTrigger:{trigger:im,start:'top 88%'}})});
+ // Faixa de texto reage à velocidade do scroll
+ var mq=document.getElementById('mqt'),mxp=0,sk=gsap.quickTo(mq,'skewX',{duration:.4});
+ ScrollTrigger.create({onUpdate:function(self){mxp-=2+self.getVelocity()/300;if(mxp<-mq.offsetWidth/2)mxp=0;if(mxp>0)mxp=-mq.offsetWidth/2;gsap.set(mq,{x:mxp});sk(gsap.utils.clamp(-12,12,self.getVelocity()/-250))}});
+ // Barra de progresso
+ gsap.to('#bar',{scaleX:1,ease:'none',scrollTrigger:{start:0,end:'max',scrub:.2}});
+ // Transição de fundo entre seções (brilho muda de lugar)
+ gsap.utils.toArray('section').forEach(function(sc,i){ScrollTrigger.create({trigger:sc,start:'top 55%',end:'bottom 55%',onToggle:function(st){if(st.isActive)gsap.to('.glow',{opacity:i%2?.55:1,backgroundPosition:i%2?'30% 60%':'0% 0%',duration:1.2})}})});
+ // Hero se afasta da câmera ao sair
+ gsap.to('.hero',{scale:.88,opacity:.15,filter:'blur(6px)',ease:'none',scrollTrigger:{trigger:'.hero',start:'center top',end:'bottom top',scrub:true}});
+ // Ondas de luz ao tocar
+ addEventListener('pointerdown',function(e){var r=document.createElement('div');r.className='rip';r.style.left=e.clientX+'px';r.style.top=e.clientY+'px';document.body.appendChild(r);gsap.to(r,{scale:9,opacity:0,duration:.9,ease:'power2.out',onComplete:function(){r.remove()}})});
+ // Parallax do hero
+ gsap.to('#heroimg',{yPercent:-25,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+ gsap.to('.hero h1',{yPercent:-18,opacity:.2,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+ // Projetos: aproximação 3D + zoom interno
+ gsap.utils.toArray('.proj').forEach(function(s,i){var shot=s.querySelector('.shot'),img=shot.querySelector('img');
+  gsap.fromTo(shot,{scale:.7,rotateY:i%2?-22:22,rotateX:10,opacity:.2},{scale:1,rotateY:0,rotateX:0,opacity:1,ease:'none',scrollTrigger:{trigger:s,start:'top 85%',end:'top 20%',scrub:true}});
+  gsap.fromTo(img,{scale:1.25},{scale:1,ease:'none',scrollTrigger:{trigger:s,start:'top bottom',end:'bottom top',scrub:true}});
+  if(!mobile){shot.addEventListener('pointermove',function(e){var r=shot.getBoundingClientRect(),px=(e.clientX-r.left)/r.width-.5,py=(e.clientY-r.top)/r.height-.5;gsap.to(shot,{rotateY:px*10,rotateX:-py*10,duration:.5,overwrite:'auto'})});
+   shot.addEventListener('pointerleave',function(){gsap.to(shot,{rotateY:0,rotateX:0,duration:.8})});}});
+ gsap.from('.fl img',{scale:1.2,duration:1.4,ease:'power3.out',scrollTrigger:{trigger:'.fl',start:'top 80%'}});
+}
+
+// Three.js: partículas 3D, linhas conectadas e formas abstratas
+try{
+ var cv=document.getElementById('gl'),R=new THREE.WebGLRenderer({canvas:cv,alpha:true,antialias:!mobile});
+ R.setPixelRatio(Math.min(devicePixelRatio,mobile?1.5:2));R.setSize(innerWidth,innerHeight);
+ var S=new THREE.Scene(),C=new THREE.PerspectiveCamera(60,innerWidth/innerHeight,.1,100);C.position.z=8;
+ var N=mobile?350:1100,pos=new Float32Array(N*3);
+ for(var i=0;i<N*3;i++)pos[i]=(Math.random()-.5)*(i%3===2?30:22);
+ var g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.BufferAttribute(pos,3));
+ var pts=new THREE.Points(g,new THREE.PointsMaterial({color:0xff6a1a,size:mobile?.05:.04,transparent:true,opacity:.85,blending:THREE.AdditiveBlending,depthWrite:false}));S.add(pts);
+ // rede de linhas
+ var M=mobile?35:80,np=[],lp=[];for(i=0;i<M;i++)np.push(new THREE.Vector3((Math.random()-.5)*16,(Math.random()-.5)*10,(Math.random()-.5)*8));
+ for(i=0;i<M;i++)for(var j=i+1;j<M;j++)if(np[i].distanceTo(np[j])<3.2)lp.push(np[i].x,np[i].y,np[i].z,np[j].x,np[j].y,np[j].z);
+ var lg=new THREE.BufferGeometry();lg.setAttribute('position',new THREE.Float32BufferAttribute(lp,3));
+ var net=new THREE.LineSegments(lg,new THREE.LineBasicMaterial({color:0xff5a00,transparent:true,opacity:.22,blending:THREE.AdditiveBlending}));S.add(net);
+ // formas abstratas
+ var wm=new THREE.MeshBasicMaterial({color:0xff5a00,wireframe:true,transparent:true,opacity:.35});
+ var ico=new THREE.Mesh(new THREE.IcosahedronGeometry(1.6,1),wm);ico.position.set(4,1,-1);S.add(ico);
+ var knot=new THREE.Mesh(new THREE.TorusKnotGeometry(.9,.28,mobile?60:140,mobile?8:16),wm);knot.position.set(-5,-2,-2);S.add(knot);
+ var mx=0,my=0,sy=0,vis=true;
+ addEventListener('pointermove',function(e){mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5});addEventListener('touchmove',function(e){var q=e.touches[0];mx=q.clientX/innerWidth-.5;my=q.clientY/innerHeight-.5},{passive:true});
+ document.addEventListener('visibilitychange',function(){vis=!document.hidden});
+ addEventListener('resize',function(){R.setSize(innerWidth,innerHeight);C.aspect=innerWidth/innerHeight;C.updateProjectionMatrix()});
+ var t=0;
+ (function loop(){requestAnimationFrame(loop);if(!vis)return;
+  if(!RM)t+=.003;sy+=(scrollY-sy)*.06;
+  pts.rotation.y=t*.6;pts.rotation.x=t*.2;net.rotation.y=Math.sin(t)*.2;
+  ico.rotation.x=t*2;ico.rotation.y=t*1.5;knot.rotation.x=-t*2;knot.rotation.z=t;
+  C.position.x+=(mx*2-C.position.x)*.04;C.position.y+=(-my*1.4-sy*.0012-C.position.y)*.04;
+  C.position.z=8-Math.min(sy*.0016,5)+Math.sin(sy*.0015)*1.5;C.lookAt(0,C.position.y*.3,0);
+  R.render(S,C)})();
+}catch(e){cv.style.display='none'}
+})();
+</script>
+</body>
+</html>
