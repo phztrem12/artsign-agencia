@@ -39,3 +39,58 @@ if(window.gsap&&window.ScrollTrigger){
 }
 if(matchMedia("(pointer:fine)").matches){const art=document.querySelector(".hero-art");document.querySelector(".hero")?.addEventListener("pointermove",e=>{if(!art)return;const r=e.currentTarget.getBoundingClientRect();const x=(e.clientX-r.left)/r.width-.5;const y=(e.clientY-r.top)/r.height-.5;window.gsap?.to?window.gsap.to(art,{x:x*13,y:y*11,duration:.7,ease:"power2.out"}):art.style.transform="translate3d("+x*9+"px,"+y*8+"px,0)";});}
 })();
+
+/* Immersive 3D particle field and cinematic entrance */
+(() => {
+ const loader=document.querySelector(".cinematic-loader");
+ const hideLoader=()=>{if(loader){loader.classList.add("is-gone");setTimeout(()=>loader.remove(),900);}};
+ if(document.readyState==="complete")setTimeout(hideLoader,1550);
+ else window.addEventListener("load",()=>setTimeout(hideLoader,1550),{once:true});
+ setTimeout(hideLoader,3200);
+ const canvas=document.querySelector("#art-canvas");
+ const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+ if(!canvas||reduce||!window.THREE)return;
+ try{
+  const THREE=window.THREE;
+  const scene=new THREE.Scene();
+  const camera=new THREE.PerspectiveCamera(55,innerWidth/innerHeight,.1,100);
+  camera.position.z=26;
+  const renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true});
+  renderer.setPixelRatio(Math.min(devicePixelRatio,1.7));
+  renderer.setSize(innerWidth,innerHeight);
+  const count=innerWidth<650?520:1050;
+  const positions=new Float32Array(count*3),sizes=new Float32Array(count);
+  for(let i=0;i<count;i++){
+   positions[i*3]=(Math.random()-.5)*44;
+   positions[i*3+1]=(Math.random()-.5)*27;
+   positions[i*3+2]=(Math.random()-.5)*24;
+   sizes[i]=Math.random()*1.4+.35;
+  }
+  const geometry=new THREE.BufferGeometry();
+  geometry.setAttribute("position",new THREE.BufferAttribute(positions,3));
+  geometry.setAttribute("size",new THREE.BufferAttribute(sizes,1));
+  const material=new THREE.PointsMaterial({color:0xff8a3d,size:.075,transparent:true,opacity:.78,blending:THREE.AdditiveBlending,depthWrite:false});
+  const particles=new THREE.Points(geometry,material);
+  scene.add(particles);
+  const dustGeometry=new THREE.BufferGeometry();
+  const dustCount=innerWidth<650?180:380,dust=new Float32Array(dustCount*3);
+  for(let i=0;i<dustCount;i++){dust[i*3]=(Math.random()-.5)*40;dust[i*3+1]=(Math.random()-.5)*24;dust[i*3+2]=(Math.random()-.5)*20;}
+  dustGeometry.setAttribute("position",new THREE.BufferAttribute(dust,3));
+  const dustMaterial=new THREE.PointsMaterial({color:0xffffff,size:.035,transparent:true,opacity:.55,depthWrite:false});
+  const dustPoints=new THREE.Points(dustGeometry,dustMaterial);scene.add(dustPoints);
+  let mx=0,my=0,tx=0,ty=0,raf=0;
+  addEventListener("pointermove",e=>{tx=(e.clientX/innerWidth-.5)*.7;ty=(e.clientY/innerHeight-.5)*-.45},{passive:true});
+  const clock=new THREE.Clock();
+  const render=()=>{
+   raf=requestAnimationFrame(render);
+   const t=clock.getElapsedTime();
+   mx+=(tx-mx)*.025;my+=(ty-my)*.025;
+   particles.rotation.y=t*.018+mx;particles.rotation.x=Math.sin(t*.12)*.045+my;
+   dustPoints.rotation.y=-t*.009-mx*.4;dustPoints.rotation.x=Math.cos(t*.1)*.025;
+   camera.position.x=mx*1.2;camera.position.y=my*1.2;camera.lookAt(0,0,0);
+   renderer.render(scene,camera);
+  };render();
+  addEventListener("resize",()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);renderer.setPixelRatio(Math.min(devicePixelRatio,1.7));},{passive:true});
+  document.addEventListener("visibilitychange",()=>{if(document.hidden){cancelAnimationFrame(raf)}else if(!raf)render();});
+ }catch(e){canvas.style.display="none";}
+})();
